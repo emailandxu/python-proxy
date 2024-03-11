@@ -630,7 +630,7 @@ class ProxySSH(ProxySimple):
                 password = None
             else:
                 client_keys = None
-            conn = await asyncssh.connect(host=self.host_name, port=self.port, local_addr=local_addr, family=family, x509_trusted_certs=None, known_hosts=None, username=username, password=password, client_keys=client_keys, keepalive_interval=60, tunnel=tunnel)
+            conn = await asyncssh.connect(host=self.host_name, port=self.port, local_addr=local_addr, family=family, x509_trusted_certs=None, known_hosts=None, username=username, password=password, client_keys=client_keys, keepalive_interval=20, keepalive_count_max=9, tunnel=tunnel)
             self.sshconn.set_result(conn)
     async def wait_open_connection(self, host, port, local_addr, family, tunnel=None):
         try:
